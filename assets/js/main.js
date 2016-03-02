@@ -106,10 +106,18 @@
 
 } )( jQuery );
 
-// obfuscate email
-
-$( function () {
+$(function () {
+    // obfuscate email
     var obfuscated = 'irebavpn@npgvireb.yvsr';
 	obfuscated = obfuscated.replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});
     $( '.emailAddress' ).attr( 'href', 'mailto:' + obfuscated );
-} );
+    
+    // track events
+    $('.emailAddress').click(function(){
+        ga('send', 'event', 'Interaction', 'Click', 'Email');
+    });
+    
+    $('.presentation').click(function(){
+        ga('send', 'event', 'Interaction', 'Click', 'Presentation');
+    });
+});
